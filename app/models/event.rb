@@ -1,20 +1,23 @@
 class Event
-  attr_reader :
-  # STEP 2
-  # make attr_readers for some of them,
-  # or Josh's Groupon _attribute method instead
+  attr_reader :title,
+              :start_time,
+              :description,
+              :venue_name,
+              :venue_address,
+              :going,
+              :url
 
-  def initialize(search_parameters = {})
-    # STEP 1
-    # pull out the parameters I am going to use
+  def initialize(attrs = {})
+    @title          = attrs["title"]
+    @start_time     = attrs["start_time"]
+    @description    = shorten(attrs["description"])
+    @venue_name     = attrs["venue_name"]
+    @venue_address  = attrs["venue_address"]
+    @going          = attrs["going"]
+    @url            = attrs["url"]
   end
 
-  def self.for_date(date)
-    # STEP 3
-    # Make test and methods for retrieving desired events
-    EventFinder.for_date(date).map do |event_hash|
-      new(event)
-    end
+  def shorten(description)
+    description[0...140] if description
   end
-
 end

@@ -17,7 +17,7 @@ describe "As a user" do
       @events.each do |event|
         expect(page).to have_content(event["title"])
         expect(page).to have_content(event["start_time"])
-        expect(page).to have_content(event["description"])
+        expect(page).to have_content(event["description"][0...140]) if event["description"] 
         expect(page).to have_content(event["venue_name"])
         expect(page).to have_content(event["venue_address"])
         expect(page).to have_content(event["going"])

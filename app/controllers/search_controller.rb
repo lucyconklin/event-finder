@@ -1,8 +1,8 @@
 class SearchController < ApplicationController
   def index
+    params[:date] = "March"
     zipcode = params[:q]
-    @events = Event.for_date(params[:date])
-    # response = Faraday.get("http://api.eventful.com/json/events/search?location=#{zipcode}&date=March&page_size=16&sort_order=popularity&app_key=#{ENV["eventful_app_key"]}")
-    # @events = JSON.parse(response.body)["events"]["event"]
+    date = params[:date]
+    @events = EventFinder.for_date(date, zipcode)
   end
 end
